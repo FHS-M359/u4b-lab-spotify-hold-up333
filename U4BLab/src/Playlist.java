@@ -32,6 +32,8 @@ public class Playlist {
             if(word.equalsIgnoreCase(origin.get(i).getGenre())){
                 // adds the origin genre to the sortedSongs array
                 sortedSongs.add(origin.get(i));
+            }else if(origin.get(i).getGenre().contains(word)){
+                sortedSongs.add(origin.get(i));
             }
         }
 
@@ -103,22 +105,11 @@ public class Playlist {
         // take each object of the array and switch them around using .set() method
         //
         // insertion sort
-        for (int i = 1; i < sortedSongs.size(); i++) {
-//            Song current = sortedSongs.get(i);
-//            int x = i-1;
-
-//            while(x>=0 && sortedSongs.get(x).getArtist().compareToIgnoreCase(current.getArtist())>0){
-//                sortedSongs.set(x+1, sortedSongs.get(x));
-//                x--;
-//            }
-//            while(x>=0 && current.getArtist().compareToIgnoreCase(sortedSongs.get(x).getArtist())<0){
-//                sortedSongs.set(x+1, sortedSongs.get(x));
-//                x--;
-//            }
+        for (int i = 0; i < sortedSongs.size()-1; i++) {
             int index = i;
 
             for (int j = i+1; j < sortedSongs.size(); j++) {
-                if(sortedSongs.get(j).getArtist().compareToIgnoreCase(sortedSongs.get(index).getArtist())>0){
+                if(sortedSongs.get(j).getArtist().compareToIgnoreCase(sortedSongs.get(index).getArtist()) < 0){
                     index=j;
                 }
             }
@@ -134,8 +125,26 @@ public class Playlist {
 
     public static void zToA(){
         sortedSongs.removeAll(sortedSongs);
-        // compareTo() method
-        System.out.println("Unfinished. Chose another one");
+        sortedSongs.addAll(origin);
+        for (int i = 0; i < sortedSongs.size()-1; i++) {
+            int index = i;
+
+            for (int j = i+1; j < sortedSongs.size(); j++) {//                                 just switch the < to >
+                if(sortedSongs.get(j).getArtist().compareToIgnoreCase(sortedSongs.get(index).getArtist()) < 0){
+                    index=j;
+                }
+            }
+
+            sortedSongs.set(index, sortedSongs.set(i, sortedSongs.get(index)));
+        }
+
+        Collections.reverse(sortedSongs);
+
+        // displays all songs in sorted arraylist
+        for(Song song: sortedSongs){
+            System.out.println(song.toString());
+        }
+
     }
 
     public static void displayAll(){

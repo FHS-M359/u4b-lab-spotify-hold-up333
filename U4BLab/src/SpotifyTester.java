@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 public class SpotifyTester {
     public static void main(String[] args) {
         Scanner input = null;
-        boolean state = false;
+        boolean state;
         int num;
 
         try {
@@ -46,7 +46,7 @@ public class SpotifyTester {
                         String word = input.nextLine();
                         Playlist.genreSort(word);
                         state = true;
-                    } else {
+                    } else{
                         Playlist.displayAll();
                         state = true;
                     }
@@ -69,14 +69,16 @@ public class SpotifyTester {
                     num = input.nextInt();
                 }
                 System.out.println("Please input a number between 1 and 7");
+                input.nextLine();
                 num = input.nextInt();
             }
-            System.out.println("Have a nice day");
 
+            System.out.println("Have a nice day");
 
         } catch (InputMismatchException e) {
             System.out.println("please input a number 1-7");
             input.nextLine();
+            num = input.nextInt();
         } catch (NoSuchElementException e) {
             System.out.println("Please input another value");
         }

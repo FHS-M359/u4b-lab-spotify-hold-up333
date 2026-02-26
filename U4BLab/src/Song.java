@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Song {
-    private final String specs = "%-29s %-21s %-29s %-6s %-7s";
+    private final String specs = "%-21s %-24s %-28s %-5s %-7s";
     private String title;
     private String artist;
     private String album;
@@ -42,6 +42,6 @@ public class Song {
         return Integer.parseInt(year);
     }
     public String toString(){
-        return String.format(specs, title, artist, album, year, genre);
+        return String.format(specs, artist, title, album, year, genre);
     }
 }
